@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: web1
+  name: web1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web1
+  template:
+    metadata:
+      labels:
+        app: web1
+    spec:
+      imagePullSecrets:
+      - name: dockerhubsecret1
+      containers:
+        - image: docker.io/sbriggs80/hackathon:hackathonwebv1.0
+        name: webdeploy

@@ -1,0 +1,55 @@
+version: "3.9"
+services:
+  database:
+    build:
+      context: .
+      dockerfile: mysql.df
+    container_name: db1
+    environment:
+    - MYSQL_ROOT_PASSWORD=123
+    ports:
+    - "3306:3306"
+    healthcheck:
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+      #networks:
+      #my_network:
+      #  ipv4_address: 172.19.0.8
+  webserver1:
+    build:
+      context: .
+      dockerfile: ./web1.df
+    container_name: web1
+    ports:
+    - "9090:80"
+    volumes:
+    - "/php:/var/www/html"
+    depends_on:
+      - database
+
+        #  python-flask:
+        #    build:
+        #context: .
+        #dockerfile: flask_py.df
+        #container_name: flask_py
+        #depends_on:
+        #- database
+
+  python-app1:
+    build:
+      context: .
+      dockerfile: pod1_py.df
+    container_name: pod1_py
+    depends_on:
+      - database
+
+  python-app2:
+    build:
+      context: .
+      dockerfile: pod2_py.df
+    container_name: pod2_py
+    depends_on:
+      - database
+

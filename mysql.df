@@ -1,0 +1,5 @@
+FROM mysql:latest
+ENV MYSQL_DATABASE=hackathon
+COPY ./createtable.sql /docker-entrypoint-initdb.d/
+COPY ./insertvalues.sql /docker-entrypoint-initdb.d/
+
