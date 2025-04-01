@@ -23,15 +23,15 @@ spec:
           - name: MYSQL_ROOT_PASSWORD
             value: "123"
           volumeMounts:
-            - name: www
+            - name: simondb
               mountPath: /var/lib/mysql
   volumeClaimTemplates:
     - metadata:
-        name: www
+        name: simondb
       spec:
         accessModes:
           - ReadWriteOnce
-        storageClassName: ibmc-block-gold
+        storageClassName: managed-csi
         resources:
           requests:
             storage: 20G
