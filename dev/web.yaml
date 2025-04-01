@@ -18,7 +18,7 @@ spec:
         app: web1
     spec:
       containers:
-      - image: docker.io/sbriggs80/hackathon:hackathonwebv1.0
+      - image: docker.io/sbriggs80/hackathon:hackathonwebv2.0
         name: web1
         resources: {}
 status: {}
